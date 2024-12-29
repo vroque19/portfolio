@@ -5,14 +5,20 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				primary: '#D8A48F',
+				primary: {
+					one: '#9A8C98',
+					two: '#4A4E69',
+					three: '#22223B'
+				},
 				secondary: {
           olive: '#A3A380',
           mauve: '#BB8588',
+					dark_green: '#6b705c'
+					// 6b705cv
         },
 				neutral: {
-          beige: '#D6CE93',
-          cream: '#EFEBCE',
+          one: '#F2E9E4',
+					two: '#C9ADA7'
         }
 			}
 		}
