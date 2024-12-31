@@ -19,7 +19,7 @@
 		{
 			title: "Project Three",
 			description: "A responsive dashboard application",
-			image: "$assets/ui-placeholder.png",
+			image: "cute-corgi",
 			link: "https://project3.com",
 		},
 	];
