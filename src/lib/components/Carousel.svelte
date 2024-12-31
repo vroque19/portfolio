@@ -31,21 +31,28 @@
 </script>
 
 <section id="project-carousel bg-blue-200">
-	<h1 class="text-center text-5xl">Projects</h1>
 	<div class="carousel w-full py-2">
 		{#each projects as project}
 			<div id={project.title} class="carousel-item relative w-full">
 				<div
-					class=" border- h-48 w-full rounded-lg bg-neutral-two shadow-md transition-shadow duration-300 hover:shadow-lg"
+					class="h-48 w-full rounded-lg bg-neutral-two shadow-md transition-shadow duration-300 hover:shadow-lg"
 				>
-					<h1 class="text-pretty text-2xl font-bold">{project.title}</h1>
-					<p class="text-secondary-green mb-4">{project.description}</p>
+					<div class=" px-20 pb-5 pt-5 font-extrabold md:text-4xl">{project.title}</div>
+					<div class=" px-20 pb-5 font-bold md:text-xl">{project.description}</div>
 				</div>
 				<div
 					class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between"
 				>
-					<a href="#slide{project.id}" class="btn btn-circle">❮</a>
-					<a href="#slide{project.id + 1}" class="btn btn-circle">❯</a>
+					{#if project.id == 1}
+						<a href="#slide{project.id}" class="btn btn-circle">❮</a>
+						<a href="#slide{project.id + 1}" class="btn btn-circle">❯</a>
+					{:else if project.id == 3}
+						<a href="#slide{project.id - 1}" class="btn btn-circle">❮</a>
+						<a href="#slide{project.id}" class="btn btn-circle">❯</a>
+					{:else}
+						<a href="#slide{project.id - 1}" class="btn btn-circle">❮</a>
+						<a href="#slide{project.id + 1}" class="btn btn-circle">❯</a>
+					{/if}
 				</div>
 			</div>
 		{/each}
