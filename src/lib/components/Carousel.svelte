@@ -1,5 +1,5 @@
 <script>
-	import { ExternalLink } from 'lucide-svelte';
+	import { ExternalLink, ChevronRight, ChevronLeft } from 'lucide-svelte';
 	import { fade } from 'svelte/transition';
 
 	// Projects data
@@ -13,7 +13,7 @@
 		},
 		{
 			id: 2,
-			title: 'Frequency Visualizer',
+			title: 'Complex Exponential',
 			description: 'An e-commerce platform with modern design',
 			image: 'visualizer.gif',
 			link: 'https://project2.com'
@@ -30,31 +30,45 @@
 	const a = { foo: 3 };
 </script>
 
-<section id="project-carousel bg-blue-200">
-	<div class="carousel w-full py-2">
-		{#each projects as project}
-			<div id={project.title} class="carousel-item relative w-full">
-				<div
-					class="h-48 w-full rounded-lg bg-neutral-two shadow-md transition-shadow duration-300 hover:shadow-lg"
-				>
-					<div class=" px-20 pb-5 pt-5 font-extrabold md:text-4xl">{project.title}</div>
-					<div class=" px-20 pb-5 font-bold md:text-xl">{project.description}</div>
-				</div>
-				<div
-					class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between"
-				>
-					{#if project.id == 1}
-						<a href="#slide{project.id}" class="btn btn-circle">❮</a>
-						<a href="#slide{project.id + 1}" class="btn btn-circle">❯</a>
-					{:else if project.id == 3}
-						<a href="#slide{project.id - 1}" class="btn btn-circle">❮</a>
-						<a href="#slide{project.id}" class="btn btn-circle">❯</a>
-					{:else}
-						<a href="#slide{project.id - 1}" class="btn btn-circle">❮</a>
-						<a href="#slide{project.id + 1}" class="btn btn-circle">❯</a>
-					{/if}
-				</div>
+<section id="project-carousel">
+	<div class="carousel w-full py-10">
+		<div id="slide1" class="carousel-item relative w-full">
+			<div
+				class="h-48 w-full rounded-lg bg-neutral-two shadow-md transition-shadow duration-300 hover:shadow-lg dark:bg-primary-two"
+			>
+				<div class=" px-20 pb-5 pt-5 font-extrabold md:text-4xl">{projects[0].title}</div>
+				<div class=" px-20 pb-5 font-bold md:text-xl">{projects[0].description}</div>
 			</div>
-		{/each}
+			<div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+				<a href="#slide1" class="btn btn-circle">❮</a>
+				<a href="#slide2" class="btn btn-circle">❯</a>
+			</div>
+		</div>
+		<div id="slide2" class="carousel-item relative w-full">
+			<div
+				class="h-48 w-full rounded-lg bg-neutral-two shadow-md transition-shadow duration-300 hover:shadow-lg dark:bg-primary-two"
+			>
+				<div class=" px-20 pb-5 pt-5 font-extrabold md:text-4xl">{projects[1].title}</div>
+				<div class=" px-20 pb-5 font-bold md:text-xl">{projects[1].description}</div>
+			</div>
+			<div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+				<a href="#slide1" class="btn btn-circle">❮</a>
+				<a href="#slide3" class="btn btn-circle">❯</a>
+				<!-- <ChevronLeft />
+				<ChevronRight /> -->
+			</div>
+		</div>
+		<div id="slide3" class="carousel-item relative w-full">
+			<div
+				class="h-48 w-full rounded-lg bg-neutral-two shadow-md transition-shadow duration-300 hover:shadow-lg dark:bg-primary-two"
+			>
+				<div class=" px-20 pb-5 pt-5 font-extrabold md:text-4xl">{projects[2].title}</div>
+				<div class=" px-20 pb-5 font-bold md:text-xl">{projects[2].description}</div>
+			</div>
+			<div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+				<a href="#slide2" class="btn btn-circle">❮</a>
+				<a href="#slide3" class="btn btn-circle">❯</a>
+			</div>
+		</div>
 	</div>
 </section>

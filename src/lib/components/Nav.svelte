@@ -1,82 +1,101 @@
 <script>
-	import { Menu, X } from "lucide-svelte";
-	import { slide } from "svelte/transition";
+	import { Menu, X, MoonStarIcon, SunMedium } from 'lucide-svelte';
+	import { slide } from 'svelte/transition';
 
-	let { isMobileMenuOpen = $bindable(false) } = $props();
+	let { isMobileMenuOpen = $bindable(false), toggleDarkMode, isDarkMode } = $props();
 
 	// Navigation items
 	const navItems = [
-		{ href: "#home", label: "Home" },
-		{ href: "#projects", label: "Projects" },
-		{ href: "#blog", label: "Blog" },
-		{ href: "#contact", label: "Contact" },
+		{ href: '#home', label: 'Home' },
+		{ href: '#projects', label: 'Projects' },
+		{ href: '#contact', label: 'Contact' }
 	];
 </script>
 
-<header class="sticky top-0 w-full bg-neutral-one backdrop-blur-sm border-b border-primary-two z-10 relative overflow-hidden">
-	<nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16">
-      <!-- Logo/Initials -->
-      
-      <a href="#home" class="text-2xl font-bold text-neutral-900">VR</a>
+<header
+	class="relative sticky top-0 z-10 w-full overflow-hidden border-b border-primary-two bg-neutral-one text-neutral-600 backdrop-blur-sm dark:bg-slate-800 dark:text-white"
+>
+	<nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<div class="flex h-16 items-center justify-between">
+			<!-- Logo/Initials -->
+
+			<a href="#home" class="text-2xl font-bold">VR</a>
 			<!-- Desktop Navigation -->
-			<div class="hidden md:flex items-center space-x-8">
-        {#each navItems as item}
-        <a href={item.href} class="text-neutral-600 hover:text-neutral-900 transition-colors duration-200">
-          {item.label}
-        </a>
+			<div class="hidden items-center space-x-8 md:flex">
+				{#each navItems as item}
+					<a
+						href={item.href}
+						class="transition-colors duration-200 hover:scale-x-105 hover:text-neutral-900 dark:hover:text-neutral-two"
+					>
+						{item.label}
+					</a>
 				{/each}
+				<button onclick={toggleDarkMode}>
+					{#if !isDarkMode}
+						<MoonStarIcon />
+					{:else}
+						<SunMedium size={30} />
+					{/if}
+				</button>
 			</div>
 			<!-- Mobile menu button -->
-			<button class="md:hidden p-2" onclick={() => (isMobileMenuOpen = !isMobileMenuOpen)} aria-label="Toggle menu">
+			<button
+				class="p-2 md:hidden"
+				onclick={() => (isMobileMenuOpen = !isMobileMenuOpen)}
+				aria-label="Toggle menu"
+			>
 				{#if isMobileMenuOpen}
-				<X size={24} />
+					<X size={24} />
 				{:else}
-				<Menu size={24} />
+					<Menu size={24} />
 				{/if}
 			</button>
 		</div>
 	</nav>
 	<!-- walking corgi animation-->
-	<div class="corgi absolute left[-100px] pt-12 bottom-0 w-16 h-16">
-		<img class="w-5 h-auto" src="/corgi-walk.gif" alt="">
+	<div class="corgi left[-100px] pointer-events-none absolute bottom-0 h-16 w-16 pt-12">
+		<img class="h-auto w-5" src="/corgi-walk.gif" alt="" />
 	</div>
-	
+
 	<!-- Mobile Navigation -->
 	{#if isMobileMenuOpen}
-	<div class="md:hidden" transition:slide>
-		<div class="px-2 pt-2 pb-3 space-y-1 bg-neutral-50 border-b border-neutral-200">
-			{#each navItems as item}
-			<a href={item.href} class="block px-3 py-2 text-base font-medium text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 rounded-md" onclick={() => (isMobileMenuOpen = false)}>
-				{item.label}
-			</a>
-			{/each}
+		<div class="md:hidden" transition:slide>
+			<div
+				class="space-y-1 border-b border-neutral-200 bg-neutral-50 px-2 pb-3 pt-2 dark:bg-slate-800"
+			>
+				{#each navItems as item}
+					<a
+						href={item.href}
+						class="block rounded-md px-3 py-2 text-base font-medium text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 dark:text-white"
+						onclick={() => (isMobileMenuOpen = false)}
+					>
+						{item.label}
+					</a>
+				{/each}
+			</div>
 		</div>
-	</div>
 	{/if}
 </header>
 
 <style>
 	.corgi {
-		animation: walk 20s linear infinite;
-
+		animation: walk 25s linear infinite;
 	}
 	.corgi:hover {
-  	animation-play-state: paused;
+		animation-play-state: paused;
 	}
 	@keyframes walk {
 		0% {
-    transform: translateX(0vw) scaleX(-1);
-  }
-  49% {
-    transform: translateX(99vw) scaleX(-1);
-  }
-  50% {
-    transform: translateX(100vw) scaleX(1);
-  }
-  100% {
-    transform: translateX(0vw) scaleX(1);
-  }
-
+			transform: translateX(0vw) scaleX(-1);
+		}
+		49% {
+			transform: translateX(99vw) scaleX(-1);
+		}
+		50% {
+			transform: translateX(100vw) scaleX(1);
+		}
+		100% {
+			transform: translateX(0vw) scaleX(1);
+		}
 	}
 </style>

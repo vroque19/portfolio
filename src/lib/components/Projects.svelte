@@ -1,7 +1,9 @@
 <script>
 	import Carousel from './Carousel.svelte';
+	import Saos from 'saos';
 	import { ExternalLink } from 'lucide-svelte';
 	import { fade } from 'svelte/transition';
+	import Test from './CarouselTest.svelte';
 
 	// Projects data
 	const projects = [
@@ -26,11 +28,13 @@
 	];
 </script>
 
+<!-- <div><p>animation: from-left</p></div> -->
 <section id="projects" class="py-20">
 	<div class="p-4 pt-8 text-4xl font-extrabold md:text-6xl">My Projects</div>
 	<div class="w-10/12 p-4 text-2xl text-opacity-85 md:text-4xl">
-		I love learning new things and creating exciting projects in the process. You can check out some
-		of my projects below.
+		I'm passionate about learning and creating. Take a look at some of the projects I've been
+		working on below.
 	</div>
-	<Carousel />
+	<!-- <Carousel /> -->
+	<Test />
 </section>
