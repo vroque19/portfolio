@@ -35,6 +35,6 @@
 		I'm passionate about learning and creating. Take a look at some of the projects I've been
 		working on below.
 	</div>
-	<!-- <Carousel /> -->
-	<Test />
+	<Carousel />
+	<!-- <Test /> -->
 </section>

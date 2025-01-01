@@ -28,46 +28,47 @@
 	];
 	let items = Array.from({ length: 5 });
 	const a = { foo: 3 };
+	let isClicked = false;
+	let currentSlide = 0;
+
+	function toggleColor() {
+		isClicked = !isClicked;
+	}
+	function nextSlide() {
+		if (currentSlide < projects.length - 1) {
+			console.log(projects[currentSlide].title);
+
+			currentSlide = currentSlide + 1;
+		}
+	}
+	function prevSlide() {
+		if (currentSlide > 0) {
+			console.log(projects[currentSlide].title);
+			currentSlide = currentSlide - 1;
+		}
+	}
 </script>
 
 <section id="project-carousel">
 	<div class="carousel w-full py-10">
-		<div id="slide1" class="carousel-item relative w-full">
+		<div class="carousel-item relative w-full">
 			<div
 				class="h-48 w-full rounded-lg bg-neutral-two shadow-md transition-shadow duration-300 hover:shadow-lg dark:bg-primary-two"
 			>
-				<div class=" px-20 pb-5 pt-5 font-extrabold md:text-4xl">{projects[0].title}</div>
-				<div class=" px-20 pb-5 font-bold md:text-xl">{projects[0].description}</div>
+				<div class=" px-20 pb-5 pt-5 font-extrabold md:text-4xl">
+					{projects[currentSlide].title}
+				</div>
+				<div class=" px-20 pb-5 font-bold md:text-xl">{projects[currentSlide].description}</div>
 			</div>
 			<div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-				<a href="#slide1" class="btn btn-circle">❮</a>
-				<a href="#slide2" class="btn btn-circle">❯</a>
-			</div>
-		</div>
-		<div id="slide2" class="carousel-item relative w-full">
-			<div
-				class="h-48 w-full rounded-lg bg-neutral-two shadow-md transition-shadow duration-300 hover:shadow-lg dark:bg-primary-two"
-			>
-				<div class=" px-20 pb-5 pt-5 font-extrabold md:text-4xl">{projects[1].title}</div>
-				<div class=" px-20 pb-5 font-bold md:text-xl">{projects[1].description}</div>
-			</div>
-			<div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-				<a href="#slide1" class="btn btn-circle">❮</a>
-				<a href="#slide3" class="btn btn-circle">❯</a>
-				<!-- <ChevronLeft />
-				<ChevronRight /> -->
-			</div>
-		</div>
-		<div id="slide3" class="carousel-item relative w-full">
-			<div
-				class="h-48 w-full rounded-lg bg-neutral-two shadow-md transition-shadow duration-300 hover:shadow-lg dark:bg-primary-two"
-			>
-				<div class=" px-20 pb-5 pt-5 font-extrabold md:text-4xl">{projects[2].title}</div>
-				<div class=" px-20 pb-5 font-bold md:text-xl">{projects[2].description}</div>
-			</div>
-			<div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-				<a href="#slide2" class="btn btn-circle">❮</a>
-				<a href="#slide3" class="btn btn-circle">❯</a>
+				<div class="btn btn-circle bg-neutral-300 shadow-sm" on:click={prevSlide}>
+					<ChevronLeft />
+				</div>
+				<div class="btn btn-circle bg-neutral-300" on:click={nextSlide}>
+					<ChevronRight />
+				</div>
+				<!-- <a href="#slide1" class="btn btn-circle">❮</a> -->
+				<!-- <a href="#slide2" class="btn btn-circle">❯</a> -->
 			</div>
 		</div>
 	</div>
