@@ -1,19 +1,36 @@
 <script>
 	import { Mail, MapPin, Phone } from 'lucide-svelte';
-
+	import { init, sendForm } from '@emailjs/browser';
+	import { error } from '@sveltejs/kit';
+	// import { browser } from '$app/environment';
+	// import { env } from '$env/dynamic/public';
+	// import { env } from '$env/dynamic/private';
 	// Form state
 	let name = $state('');
 	let email = $state('');
 	let message = $state('');
-
+	const publicKey = import.meta.env.VITE_PUBLIC_KEY;
+	const serviceID = import.meta.env.VITE_SERVICE_ID;
+	const templateID = import.meta.env.VITE_TEMPLATE_ID;
+	init(publicKey);
 	// Handle form submission
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		const form = e.target;
 		console.log({ name, email, message });
-		// Reset form
-		name = '';
-		email = '';
-		message = '';
+		sendForm(serviceID, templateID, form).then(
+			() => {
+				console.log('SUCCESS!');
+				// Reset form
+				name = '';
+				email = '';
+				message = '';
+				alert('Email sent successfully.');
+			},
+			(error) => {
+				console.log('FAILED', error);
+			}
+		);
 	};
 </script>
 
