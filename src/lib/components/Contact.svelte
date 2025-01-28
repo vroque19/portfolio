@@ -62,6 +62,7 @@
 				<input
 					id="name"
 					type="text"
+					name="name"
 					bind:value={name}
 					class="w-full rounded-md border border-neutral-300 bg-neutral-two px-4 py-2 focus:border-neutral-500 focus:ring-1 focus:ring-neutral-500 dark:bg-primary-two dark:text-neutral-one"
 					required
@@ -75,6 +76,7 @@
 				<input
 					id="email"
 					type="email"
+					name="email"
 					bind:value={email}
 					class="w-full rounded-md border border-neutral-300 bg-neutral-two px-4 py-2 focus:border-neutral-500 focus:ring-1 focus:ring-neutral-500 dark:bg-primary-two dark:text-neutral-one"
 					required
@@ -88,6 +90,7 @@
 				>
 				<textarea
 					id="message"
+					name="message"
 					bind:value={message}
 					rows="4"
 					class="w-full rounded-md border border-neutral-300 bg-neutral-two px-4 py-2 focus:border-neutral-500 focus:ring-1 focus:ring-secondary-mauve dark:bg-primary-two dark:text-neutral-one"
