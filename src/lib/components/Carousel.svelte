@@ -7,23 +7,23 @@
 		{
 			id: 1,
 			title: 'Portfolio Website',
-			description: 'A beautiful web application built with Svelte and TailwindCSS',
+			description: 'My personal website built with Svelte and TailwindCSS',
 			image: 'cute-corgi.png',
 			link: 'https://vanessa.codes'
 		},
 		{
 			id: 2,
-			title: 'Complex Exponential',
-			description: 'An e-commerce platform with modern design',
+			title: 'Complex Exponential Simulation',
+			description: 'A simple visualizer tool to simulate rotating phasor signals',
 			image: 'visualizer.gif',
-			link: 'https://project2.com'
+			link: 'https://waves-from-rotating-vector.vercel.app'
 		},
 		{
 			id: 3,
-			title: 'Project Three',
-			description: 'A responsive dashboard application',
+			title: 'Gen-Z translation tool',
+			description: 'Real-time audio input/ output that will translate slang into proper english',
 			image: 'cute-corgi.png',
-			link: 'https://project3.com'
+			link: ''
 		}
 	];
 	let items = Array.from({ length: 5 });
@@ -59,6 +59,9 @@
 					{projects[currentSlide].title}
 				</div>
 				<div class=" px-20 pb-5 font-bold md:text-xl">{projects[currentSlide].description}</div>
+				<a class=" px-20 pb-5 font-thin md:text-sm" href={projects[currentSlide].link}>
+					{projects[currentSlide].link}
+				</a>
 			</div>
 			<div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
 				<div class="btn btn-circle bg-neutral-300 shadow-sm" on:click={prevSlide}>
