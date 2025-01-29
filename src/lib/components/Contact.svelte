@@ -49,7 +49,7 @@
 			</div>
 			<div class="flex items-center space-x-3">
 				<MapPin size={20} class="text-neutral-600" />
-				<span>CA</span>
+				<span>Fullerton, CA</span>
 			</div>
 		</div>
 
