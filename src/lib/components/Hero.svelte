@@ -6,7 +6,7 @@
 	<Smile size={400} />
 	<div class="mx-auto max-w-3xl text-center">
 		<h1 class="mb-6 text-4xl font-bold md:text-6xl">Hi, I'm Vanessa Roque</h1>
-		<p class="mb-8 text-lg md:text-xl">Computer Engineering Student</p>
+		<p class="mb-8 text-lg md:text-xl">Computer Engineer</p>
 		<div class="flex justify-center space-x-4">
 			<a
 				href="https://github.com/vroque19"
