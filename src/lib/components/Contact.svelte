@@ -2,14 +2,12 @@
 	import { Mail, MapPin, Phone } from 'lucide-svelte';
 	import { init, sendForm } from '@emailjs/browser';
 	import { error } from '@sveltejs/kit';
-	// import { browser } from '$app/environment';
-	// import { env } from '$env/dynamic/public';
-	// import { env } from '$env/dynamic/private';
+
 	// Form state
 	let name = $state('');
 	let email = $state('');
 	let message = $state('');
-	const publicKey = import.meta.env.VITE_PUBLIC_KEY;
+	const publicKey = "RB_sOnbzvRkMIz8nZ";
 	const serviceID = import.meta.env.VITE_SERVICE_ID;
 	const templateID = import.meta.env.VITE_TEMPLATE_ID;
 	init(publicKey);
@@ -29,6 +27,8 @@
 			},
 			(error) => {
 				console.log('FAILED', error);
+				console.log(serviceID, publicKey, templateID);
+				alert('Email failed to send.');
 			}
 		);
 	};
@@ -49,7 +49,7 @@
 			</div>
 			<div class="flex items-center space-x-3">
 				<MapPin size={20} class="text-neutral-600" />
-				<span>Fullerton, CA</span>
+				<span>Sunnyvale, CA</span>
 			</div>
 		</div>
 
