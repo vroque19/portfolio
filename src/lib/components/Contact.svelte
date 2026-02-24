@@ -8,8 +8,8 @@
 	let email = $state('');
 	let message = $state('');
 	const publicKey = "RB_sOnbzvRkMIz8nZ";
-	const serviceID = import.meta.env.VITE_SERVICE_ID;
-	const templateID = import.meta.env.VITE_TEMPLATE_ID;
+	const serviceID = "service_hfnzmxp";
+	const templateID = "contact-form";
 	init(publicKey);
 	// Handle form submission
 	const handleSubmit = (e) => {
