@@ -23,7 +23,7 @@
 				name = '';
 				email = '';
 				message = '';
-				alert('Email sent successfully.');
+				alert('Email sent successfully!');
 			},
 			(error) => {
 				console.log('FAILED', error);
