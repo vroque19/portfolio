@@ -6,9 +6,9 @@
 
 	// Navigation items
 	const navItems = [
-		{ href: '#home', label: 'Home' },
-		{ href: '#projects', label: 'Projects' },
-		{ href: '#contact', label: 'Contact' }
+		{ href: '/', label: 'Home' },
+		{ href: '/#contact', label: 'Contact' },
+		{href: '/blog', label: 'Blog'}
 	];
 </script>
 
