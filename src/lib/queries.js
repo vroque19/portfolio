@@ -16,3 +16,11 @@ export async function getAllBlogPosts() {
     .order("date_pub", { ascending: false });
   return { data, error };
 }
+
+export async function createBlogPost({ title, slug, tag, content }) {
+  const { data, error } = await supabase
+    .from("blog post")
+    .insert([{ title, slug, tag, content, date_pub: new Date().toISOString() }])
+    .select();
+  return { data, error };
+}
