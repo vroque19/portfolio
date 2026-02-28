@@ -16,7 +16,7 @@
 		top={200}
 		bottom={50}
 	>
-		<Projects />
+		<!-- <Projects /> -->
 	</Saos>
 	<!-- <Blog /> -->
 	<Contact />
