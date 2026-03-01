@@ -24,3 +24,16 @@ export async function createBlogPost({ title, slug, tag, content }) {
     .select();
   return { data, error };
 }
+
+export async function getAllTags() {
+  const { data, error } = await supabase
+    .from("blog post")
+    .select("tag");
+
+  if (error) {
+    return { data: [], error };
+  }
+
+  const uniqueTags = [...new Set(data.map((post) => post.tag))];
+  return { data: uniqueTags, error: null };
+}

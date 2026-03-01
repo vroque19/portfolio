@@ -1,13 +1,10 @@
 <script>
+  import { marked } from 'marked';
+
   let { data } = $props();
-  let date = data.date_pub;
-  function formatDate(currDate) {
-    return new Date(currDate).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric'
-    });
-  }
+
+
+  const htmlContent = marked(data.content || '');
 </script>
 
 <article class="max-w-3xl mx-auto px-6 py-10">
@@ -19,7 +16,7 @@
     </div>
   </header>
 
-  <div class="prose prose-lg">
-    {data.content}
+  <div class="prose prose-lg max-w-none">
+    {@html htmlContent}
   </div>
 </article>

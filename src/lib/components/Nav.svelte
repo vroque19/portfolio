@@ -2,13 +2,13 @@
 	import { Menu, X, MoonStarIcon, SunMedium } from 'lucide-svelte';
 	import { slide } from 'svelte/transition';
 
-	let { isMobileMenuOpen = $bindable(false), toggleDarkMode, isDarkMode } = $props();
+	let { isMobileMenuOpen = $bindable(false), toggleDarkMode, isDarkMode, isAdmin = false } = $props();
 
 	// Navigation items
 	const navItems = [
 		{ href: '/', label: 'Home' },
 		{ href: '/#contact', label: 'Contact' },
-		{href: '/blog', label: 'Blog'}
+		{ href: '/blog', label: 'Blog' }
 	];
 </script>
 
@@ -30,6 +30,14 @@
 						{item.label}
 					</a>
 				{/each}
+				{#if isAdmin}
+					<a
+						href="/admin"
+						class="transition-colors duration-200 hover:scale-x-105 hover:text-neutral-900 dark:hover:text-neutral-two"
+					>
+						Admin
+					</a>
+				{/if}
 				<button onclick={toggleDarkMode}>
 					{#if !isDarkMode}
 						<MoonStarIcon />
@@ -72,6 +80,15 @@
 						{item.label}
 					</a>
 				{/each}
+				{#if isAdmin}
+					<a
+						href="/admin"
+						class="block rounded-md px-3 py-2 text-base font-medium text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 dark:text-white"
+						onclick={() => (isMobileMenuOpen = false)}
+					>
+						Admin
+					</a>
+				{/if}
 			</div>
 		</div>
 	{/if}

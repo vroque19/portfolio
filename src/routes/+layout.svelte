@@ -4,7 +4,7 @@
 	import Footer from '$lib/components/Footer.svelte';
 
 	import '../app.css';
-	let { children } = $props();
+	let { children, data } = $props();
 	let isMobileMenuOpen = $state(false);
 	let isDarkMode = $state(false);
 
@@ -29,7 +29,7 @@
 	<main
 		class="min-h-screen w-full bg-neutral-one text-primary-three dark:bg-slate-800 dark:text-neutral-one"
 	>
-		<Nav bind:isMobileMenuOpen {toggleDarkMode} {isDarkMode} />
+		<Nav bind:isMobileMenuOpen {toggleDarkMode} {isDarkMode} isAdmin={data.isAdmin} />
 		{@render children()}
 		<Footer />
 	</main>
