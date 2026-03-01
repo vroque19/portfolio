@@ -35,5 +35,26 @@ export async function getAllTags() {
   }
 
   const uniqueTags = [...new Set(data.map((post) => post.tag))];
-  return { data: uniqueTags, error: null };
+  const sanUniqueTags = uniqueTags.filter(tag => tag !== null);
+  console.log(sanUniqueTags);
+  return { data: sanUniqueTags, error: null };
+}
+
+export async function uploadImage(file) {
+  const fileExt = file.name.split('.').pop();
+  const fileName = `${Date.now()}.${fileExt}`;
+
+  const { data, error } = await supabase.storage
+    .from("blog-images")
+    .upload(fileName, file);
+
+  if (error) {
+    return { url: null, error };
+  }
+
+  const { data: urlData } = supabase.storage
+    .from("blog-images")
+    .getPublicUrl(fileName);
+
+  return { url: urlData.publicUrl, error: null };
 }

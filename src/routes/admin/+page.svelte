@@ -1,11 +1,34 @@
 <script>
   import { marked } from 'marked';
+  import { uploadImage } from '$lib/queries';
 
   let { form } = $props();
   let showPreview = $state(false);
   let content = $state('');
+  let uploading = $state(false);
 
   let htmlContent = $derived(marked(content || ''));
+
+  async function handleImageUpload(event) {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    uploading = true;
+    const { url, error } = await uploadImage(file);
+    uploading = false;
+
+    if (error) {
+      alert('Failed to upload image: ' + error.message);
+      return;
+    }
+
+    // Insert markdown image at cursor or end of content
+    const imageMarkdown = `![${file.name}](${url})`;
+    content += '\n' + imageMarkdown + '\n';
+
+    // Reset the file input
+    event.target.value = '';
+  }
 </script>
 
 <div class="max-w-3xl mx-auto px-6 py-10">
@@ -81,7 +104,22 @@
         ></textarea>
       {/if}
     </div>
-<input type="file" class="file-input file-input-xs" />
+<div class="form-control">
+      <label class="label">
+        <span class="label-text">Upload Image</span>
+      </label>
+      <input
+        type="file"
+        accept="image/*"
+        class="file-input file-input-bordered file-input-sm"
+        onchange={handleImageUpload}
+        disabled={uploading}
+      />
+      {#if uploading}
+        <span class="text-sm text-gray-500 mt-1">Uploading...</span>
+      {/if}
+    </div>
+
     <button type="submit" class="btn btn-primary">Create Post</button>
   </form>
 </div>
