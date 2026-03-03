@@ -13,8 +13,7 @@ export const actions = {
     if (error) {
       return fail(500, { error: error.message });
     }
-
-    return { success: "Draft saved successfully!" };
+    throw redirect(303, "/admin/drafts");
   },
 
   publish: async ({ request, params }) => {

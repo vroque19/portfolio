@@ -23,14 +23,17 @@
   <div class="flex flex-wrap justify-center gap-2 mb-10">
     <button class="btn btn-square bg-amber-50 border-amber-50" type="button" onclick={clearFilter}>×</button>
     {#each data.tags as tag}
-      <button
-        class="btn bg-amber-50 border-amber-50"
-        class:btn-active={selectedTag === tag}
-        type="button"
-        onclick={() => selectedTag = tag}
-      >
-        {tag}
-      </button>
+    {#if tag === selectedTag || selectedTag === ''}
+      
+    <button
+      class="btn bg-amber-50 border-amber-50"
+      class:btn-active={selectedTag === tag}
+      type="button"
+      onclick={() => selectedTag = tag}
+    >
+      {tag}
+    </button>
+    {/if}
     {/each}
   </div>
 
