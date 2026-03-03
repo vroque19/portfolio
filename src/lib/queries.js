@@ -13,14 +13,33 @@ export async function getAllBlogPosts() {
   const { data, error } = await supabase
     .from("blog post")
     .select("id, title, tag, date_pub, slug")
+    .eq("published", true)
     .order("date_pub", { ascending: false });
   return { data, error };
 }
 
-export async function createBlogPost({ title, slug, tag, content }) {
+export async function createBlogPost({ title, slug, tag, content, published = false }) {
   const { data, error } = await supabase
     .from("blog post")
-    .insert([{ title, slug, tag, content, date_pub: new Date().toISOString() }])
+    .insert([{ title, slug, tag, content, published, date_pub: new Date().toISOString() }])
+    .select();
+  return { data, error };
+}
+
+export async function getAllDrafts() {
+  const { data, error } = await supabase
+    .from("blog post")
+    .select("id, title, tag, date_pub, slug, published")
+    .eq("published", false)
+    .order("date_pub", { ascending: false });
+  return { data, error };
+}
+
+export async function updateBlogPost(slug, { title, tag, content, published }) {
+  const { data, error } = await supabase
+    .from("blog post")
+    .update({ title, tag, content, published })
+    .eq("slug", slug)
     .select();
   return { data, error };
 }
@@ -28,7 +47,8 @@ export async function createBlogPost({ title, slug, tag, content }) {
 export async function getAllTags() {
   const { data, error } = await supabase
     .from("blog post")
-    .select("tag");
+    .select("tag")
+    .eq("published", true);
 
   if (error) {
     return { data: [], error };
@@ -36,7 +56,6 @@ export async function getAllTags() {
 
   const uniqueTags = [...new Set(data.map((post) => post.tag))];
   const sanUniqueTags = uniqueTags.filter(tag => tag !== null);
-  console.log(sanUniqueTags);
   return { data: sanUniqueTags, error: null };
 }
 

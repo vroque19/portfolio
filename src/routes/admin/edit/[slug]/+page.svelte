@@ -2,9 +2,11 @@
   import { marked } from 'marked';
   import { uploadImage } from '$lib/queries';
 
-  let { form } = $props();
+  let { data, form } = $props();
   let showPreview = $state(false);
-  let content = $state('');
+  let title = $state(data.post.title || '');
+  let tag = $state(data.post.tag || '');
+  let content = $state(data.post.content || '');
   let uploading = $state(false);
 
   let htmlContent = $derived(marked(content || ''));
@@ -22,21 +24,17 @@
       return;
     }
 
-    // Insert markdown image at cursor or end of content
     const imageMarkdown = `![${file.name}](${url})`;
     content += '\n' + imageMarkdown + '\n';
 
-    // Reset the file input
     event.target.value = '';
   }
 </script>
 
 <div class="max-w-3xl mx-auto px-6 py-10">
   <div class="flex justify-between items-center mb-8">
-    <h1 class="text-3xl font-bold">Create Blog Post</h1>
-    <form method="POST" action="?/logout">
-      <button type="submit" class="btn btn-outline btn-sm">Logout</button>
-    </form>
+    <h1 class="text-3xl font-bold">Edit Draft</h1>
+    <a href="/admin/drafts" class="btn btn-outline btn-sm">Back to Drafts</a>
   </div>
 
   {#if form?.success}
@@ -52,7 +50,7 @@
   {/if}
 
   <form method="POST" class="flex flex-col gap-4">
-    <div class="form-control ">
+    <div class="form-control">
       <label class="label" for="title">
         <span class="label-text">Title</span>
       </label>
@@ -61,10 +59,10 @@
         name="title"
         id="title"
         class="input input-bordered bg-secondary-mauve"
+        bind:value={title}
         required
       />
     </div>
-
 
     <div class="form-control">
       <label class="label" for="tag">
@@ -75,9 +73,11 @@
         name="tag"
         id="tag"
         class="input input-bordered bg-secondary-mauve"
+        bind:value={tag}
         required
       />
     </div>
+
     <div class="form-control">
       <div class="flex justify-between items-center">
         <label class="label" for="content">
@@ -104,7 +104,8 @@
         ></textarea>
       {/if}
     </div>
-<div class="form-control">
+
+    <div class="form-control">
       <label class="label">
         <span class="label-text">Upload Image</span>
       </label>

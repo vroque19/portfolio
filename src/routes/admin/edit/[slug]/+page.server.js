@@ -1,15 +1,14 @@
 import { fail, redirect } from "@sveltejs/kit";
-import { createBlogPost } from "$lib/queries";
+import { updateBlogPost } from "$lib/queries";
 
 export const actions = {
-  saveDraft: async ({ request }) => {
+  saveDraft: async ({ request, params }) => {
     const formData = await request.formData();
     const title = formData.get("title");
-    const slug = title.replaceAll(' ', '-').toLowerCase();
     const tag = formData.get("tag");
     const content = formData.get("content");
 
-    const { error } = await createBlogPost({ title, slug, tag, content, published: false });
+    const { error } = await updateBlogPost(params.slug, { title, tag, content, published: false });
 
     if (error) {
       return fail(500, { error: error.message });
@@ -18,24 +17,18 @@ export const actions = {
     return { success: "Draft saved successfully!" };
   },
 
-  publish: async ({ request }) => {
+  publish: async ({ request, params }) => {
     const formData = await request.formData();
     const title = formData.get("title");
-    const slug = title.replaceAll(' ', '-').toLowerCase();
     const tag = formData.get("tag");
     const content = formData.get("content");
 
-    const { error } = await createBlogPost({ title, slug, tag, content, published: true });
+    const { error } = await updateBlogPost(params.slug, { title, tag, content, published: true });
 
     if (error) {
       return fail(500, { error: error.message });
     }
 
-    return { success: "Blog post published!" };
-  },
-
-  logout: async ({ cookies }) => {
-    cookies.delete("admin_auth", { path: "/" });
-    throw redirect(303, "/admin/login");
+    throw redirect(303, "/blog");
   }
 };

@@ -37,6 +37,13 @@
 					>
 						Admin
 					</a>
+					<a
+						href="/admin/drafts"
+						class="transition-colors duration-200 hover:scale-x-105 hover:text-neutral-900 dark:hover:text-neutral-two"
+					>
+						Drafts
+					</a>
+					
 				{/if}
 				<button onclick={toggleDarkMode}>
 					{#if !isDarkMode}
@@ -87,6 +94,12 @@
 						onclick={() => (isMobileMenuOpen = false)}
 					>
 						Admin
+					</a>
+					<a
+						href="/admin/drafts"
+						class="transition-colors duration-200 hover:scale-x-105 hover:text-neutral-900 dark:hover:text-neutral-two"
+					>
+						Drafts
 					</a>
 				{/if}
 			</div>
