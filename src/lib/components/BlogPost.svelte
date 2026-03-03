@@ -18,7 +18,7 @@
   <header class="mb-8">
   <div class="flex">
     <h1 class="flex-auto text-4xl font-bold mb-4">{data.title}</h1>
-<a href="/admin/drafts" class="btn btn-outline btn-sm justify-end">Back to Blog</a>
+<a href="/blog" class="btn btn-outline btn-sm justify-end">Back to Blog</a>
   </div>
     <div class="flex gap-4 text-sm">
       <span>{formatDate(data.date_pub)}</span>
