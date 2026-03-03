@@ -16,7 +16,10 @@
 
 <div class="max-w-6xl mx-auto px-6 py-10">
   <header class="text-center mb-10">
+  <div class="flex justify-items-center">
     <h1 class="text-4xl font-bold mb-4">Blog</h1>
+    
+  </div>
     <p class="text-lg">Read about the things I am interested in :)</p>
   </header>
 
@@ -37,9 +40,9 @@
     {/each}
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center">
-    {#each filteredPosts as post}
-      <BlogPreview data={post} />
+  <div class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+    {#each filteredPosts as post, index}
+      <BlogPreview data={post} {index} />
     {/each}
   </div>
 </div>

@@ -16,7 +16,10 @@
 
 <article class="max-w-3xl mx-auto px-6 py-10">
   <header class="mb-8">
-    <h1 class="text-4xl font-bold mb-4">{data.title}</h1>
+  <div class="flex">
+    <h1 class="flex-auto text-4xl font-bold mb-4">{data.title}</h1>
+<a href="/admin/drafts" class="btn btn-outline btn-sm justify-end">Back to Blog</a>
+  </div>
     <div class="flex gap-4 text-sm">
       <span>{formatDate(data.date_pub)}</span>
       <!-- <span class="px-2 py-1  rounded text-secondary-dark_green">{data.tag}</span> -->
